@@ -1,0 +1,20 @@
+#! /bin/sh
+
+# This writes debug output to the text file below
+exec > /tmp/debug-my-script.txt 2>&1
+
+# This will run on startup on those scripts do not have a defined path
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
+
+case "$1" in
+  start)
+    echo "Starting mo_co"
+    mo_co &
+    ;;
+  stop)
+    echo "Stopping mo_co"
+    pkill mo_co
+    ;;
+esac
+
+exit 0
