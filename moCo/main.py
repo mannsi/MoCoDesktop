@@ -1,6 +1,7 @@
 
 import moCo.dropbox
 import time
+from platform import system
 
 
 def run(dropbox_folder=None):
@@ -16,4 +17,7 @@ def _execute_commands(dropbox_folder=None):
 
 
 if __name__ == "__main__":
-    run("E:\Dropbox")
+    if system() == 'Windows':
+        run("E:\Dropbox")
+    else:
+        run()
