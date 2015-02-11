@@ -20,9 +20,7 @@ class Command():
     def execute(self):
         try:
             t = Thread(target=self._thread_execute)
-            print("before thread starts")
             t.start()
-            print("after thread starts")
         except Exception as ex:
             raise Exception("Unable to run command '" + self.command + "'")
         try:
