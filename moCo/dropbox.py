@@ -23,7 +23,11 @@ def get_commands(dropbox_folder=None):
     """
     if not dropbox_folder:
         dropbox_folder = _get_dropbox_folder_path()
-    dropbox_files_path = os.path.join(dropbox_folder, 'MoCo')
+
+    dropbox_files_path = os.path.join(dropbox_folder, 'Apps', 'MoCoDBox', 'CommandsToRun')
+    if not os.path.exists(dropbox_files_path):
+        return []
+
     dropbox_files = glob.glob(os.path.join(dropbox_files_path, '*'))
     commands = []
     for file in dropbox_files:
