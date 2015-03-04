@@ -17,6 +17,3 @@ def _execute_commands(computer_id, dropbox_folder=None):
     for command in commands:
         command.execute()
 
-
-if __name__ == "__main__":
-    run("Home_Windows", "E:\Dropbox")

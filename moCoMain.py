@@ -12,3 +12,7 @@ args = parser.parse_args()
 
 def run():
     moCo.main.run(args.id, args.path)
+
+
+if __name__ == "__main__":
+    run()
