@@ -9,7 +9,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
 case "$1" in
   start)
     echo "Starting mo_co"
-    mo_co &
+    mo_co -id Linux &
     ;;
   stop)
     echo "Stopping mo_co"

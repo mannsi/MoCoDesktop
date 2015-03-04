@@ -17,14 +17,14 @@ def _get_dropbox_folder_path():
         raise FileNotFoundError("Dropbox folder not found" + str(e))
 
 
-def get_commands(dropbox_folder=None):
+def get_commands(computer_id, dropbox_folder=None):
     """
     Returns commands for all files in the predefined dropbox folder
     """
     if not dropbox_folder:
         dropbox_folder = _get_dropbox_folder_path()
 
-    dropbox_files_path = os.path.join(dropbox_folder, 'Apps', 'MoCoDBox', 'CommandsToRun')
+    dropbox_files_path = os.path.join(dropbox_folder, 'Apps', 'MoCoDBox', 'CommandsToRun', computer_id)
     if not os.path.exists(dropbox_files_path):
         return []
 

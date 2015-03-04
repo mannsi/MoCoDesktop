@@ -1,1 +1,1 @@
-powershell.exe -windowstyle hidden mo_co -p "E:\Dropbox"
+powershell.exe -windowstyle hidden mo_co -p "E:\Dropbox" -id Home_Windows
