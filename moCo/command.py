@@ -22,8 +22,8 @@ class Command():
         try:
             t = Thread(target=self._thread_execute)
             t.start()
-        except Exception as ex:
-            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.command) + "'", exc_info=True)
+        except:
+            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.commands) + "'", exc_info=True)
         try:
             self._delete_file()
         except:
@@ -33,8 +33,8 @@ class Command():
         try:
             for command in self.commands:
                 subprocess.call(command.split(), shell=True)
-        except Exception as ex:
-            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.command) + "'", exc_info=True)
+        except:
+            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.commands) + "'", exc_info=True)
 
     def _delete_file(self):
         os.remove(self.absolute_file_path)
