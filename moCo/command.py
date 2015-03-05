@@ -16,14 +16,14 @@ class Command():
         self.absolute_file_path = file_path
         self.basename = ntpath.basename(file_path)
         with open(file_path) as f:
-            self.command = f.readline()
+            self.commands = f.readlines()
 
     def execute(self):
         try:
             t = Thread(target=self._thread_execute)
             t.start()
         except Exception as ex:
-            logging.getLogger("moco").error("Unable to run command '" + self.command + "'", exc_info=True)
+            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.command) + "'", exc_info=True)
         try:
             self._delete_file()
         except:
@@ -31,9 +31,10 @@ class Command():
 
     def _thread_execute(self):
         try:
-            subprocess.call(self.command.split(), shell=True)
+            for command in self.commands:
+                subprocess.call(command.split(), shell=True)
         except Exception as ex:
-            logging.getLogger("moco").error("Unable to run command '" + self.command + "'", exc_info=True)
+            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.command) + "'", exc_info=True)
 
     def _delete_file(self):
         os.remove(self.absolute_file_path)
