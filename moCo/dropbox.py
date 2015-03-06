@@ -4,7 +4,7 @@ __author__ = 'mannsi'
 import os
 import glob
 from moCo.command import Command
-import logging
+import moCo.logger as logger
 
 
 def _get_dropbox_folder_path():
@@ -31,6 +31,6 @@ def get_commands(computer_id, dropbox_folder=None):
     dropbox_files = glob.glob(os.path.join(dropbox_files_path, '*'))
     commands = []
     for file in dropbox_files:
-        logging.getLogger("moco").debug("Got command " + file)
+        logger.get_logger().debug("Got command " + file)
         commands.append(Command(file))
     return commands

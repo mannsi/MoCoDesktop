@@ -3,8 +3,7 @@ __author__ = 'mannsi'
 import ntpath
 import os
 import subprocess
-import logging
-from threading import Thread
+import moCo.logger as logger
 
 
 class Command():
@@ -19,22 +18,16 @@ class Command():
             self.commands = f.readlines()
 
     def execute(self):
-        try:
-            t = Thread(target=self._thread_execute)
-            t.start()
-        except:
-            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.commands) + "'", exc_info=True)
+        for command in self.commands:
+            logger.get_logger().debug("Executing command '" + command + "'")
+            try:
+                subprocess.call(command.split(), shell=True)
+            except:
+                logger.get_logger().error("Unable to run command '" + command + "'", exc_info=True)
         try:
             self._delete_file()
         except:
-            logging.getLogger("moco").error("Unable to delete file '" + self.absolute_file_path + "'", exc_info=True)
-
-    def _thread_execute(self):
-        try:
-            for command in self.commands:
-                subprocess.call(command.split(), shell=True)
-        except:
-            logging.getLogger("moco").error("Unable to run command(s) '" + str(self.commands) + "'", exc_info=True)
+            logger.get_logger().error("Unable to delete file '" + self.absolute_file_path + "'", exc_info=True)
 
     def _delete_file(self):
         os.remove(self.absolute_file_path)

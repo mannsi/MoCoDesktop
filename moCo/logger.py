@@ -16,3 +16,7 @@ def initialize_logging(log_level):
     ch.setFormatter(formatter)
     logger.addHandler(fh)
     logger.addHandler(ch)
+
+
+def get_logger():
+    return logging.getLogger("moco")
